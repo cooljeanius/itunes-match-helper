@@ -11,10 +11,10 @@
 
 @interface RowData : NSObject
 
-@property (nonatomic) BOOL isChecked;
-@property (nonatomic) BOOL isDifferent;
-@property (nonatomic) NSUInteger trackId;
-@property (nonatomic, strong) iTunesFileTrack *fileTrack;
-@property (nonatomic, strong) NSDictionary *officialInfo;
+@property (nonatomic, assign) BOOL isChecked;
+@property (nonatomic, assign) BOOL isDifferent;
+@property (nonatomic, assign) NSUInteger trackId;
+@property (nonatomic, assign) __strong iTunesFileTrack *fileTrack;
+@property (nonatomic, assign) __strong NSDictionary *officialInfo;
 
 @end
