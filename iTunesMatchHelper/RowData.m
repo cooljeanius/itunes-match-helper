@@ -10,4 +10,10 @@
 
 @implementation RowData
 
+@dynamic isChecked;
+@dynamic isDifferent;
+@dynamic trackId;
+@dynamic fileTrack;
+@dynamic officialInfo;
+
 @end

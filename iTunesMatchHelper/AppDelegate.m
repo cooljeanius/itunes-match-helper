@@ -30,6 +30,22 @@
 
 @implementation AppDelegate
 
+@dynamic window;
+@dynamic progressBar;
+@dynamic progressLabel;
+@dynamic songTable;
+@dynamic scanButton;
+
+@dynamic trackIdLabel;
+@dynamic countryCodeLabel;
+@dynamic trackTableView;
+@dynamic trackView;
+
+@dynamic songData;
+@dynamic updatingLibrary;
+@dynamic canCancel;
+@dynamic doCancel;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     self.updatingLibrary = NO;
@@ -253,7 +269,7 @@
         }
         [albumIds addObject:item[@"collectionId"]];
     }
-    NSLog(@"%li albums", [albumIds count]);
+    NSLog(@"%li albums", (long)[albumIds count]);
 
     NSMutableArray *albums = [NSMutableArray arrayWithCapacity:[albumIds count]];
 
@@ -313,6 +329,14 @@
     }
 
     return path;
+}
+
+- (BOOL)isTrackInfoDifferent:(NSDictionary *)newInfo {
+    if (newInfo == NULL) {
+	return YES;
+    } else {
+	return NO;
+    }
 }
 
 - (IBAction)fetchLibrary:(id)sender {
@@ -401,7 +425,8 @@
 
             }
 
-            NSLog(@"Found %lu matched songs.",[self.songData count]);
+            NSLog(@"Found %lu matched songs.",
+		  (unsigned long)[self.songData count]);
 
             self.progressBar.maxValue = [self.songData count];
 
@@ -428,7 +453,9 @@
                 }
             }
 
-            NSLog(@"Fetched data for  %lu/%lu matched songs.", [tracks count],[self.songData count]);
+            NSLog(@"Fetched data for  %lu/%lu matched songs.",
+		  (unsigned long)[tracks count],
+		  (unsigned long)[self.songData count]);
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 [self.progressBar setDoubleValue:[self.songData count]];
             });
@@ -439,7 +466,8 @@
                 if (rowData.officialInfo == nil) {
                     NSDictionary *songNewData = matchedTracks[@(rowData.trackId)];
                     if (songNewData == nil) {
-                        NSLog(@"No metadata available for song %@ (ID: %li)",[track name], rowData.trackId);
+                        NSLog(@"No metadata available for song %@ (ID: %li)",
+			      [track name], (long)rowData.trackId);
                     }
                     else {
                         [cache addTrackInfo:rowData.trackId
@@ -450,7 +478,8 @@
                     }
                 }
 
-                rowData.isDifferent = [self isTrackInfoDifferent:track newInfo:rowData.officialInfo];
+                rowData.isDifferent = [self isTrackInfoDifferent:track
+							 newInfo:rowData.officialInfo];
 
                 dispatch_async(dispatch_get_main_queue(), ^(void) {
                     [self.songTable reloadData];

@@ -9,14 +9,17 @@
 #import "TrackView.h"
 #import "RowData.h"
 
-@implementation TrackView 
+@implementation TrackView
+
+@dynamic rowData;
+@dynamic tableView;
 
 - (id)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code here.
     }
-    
+
     return self;
 }
 
@@ -30,15 +33,15 @@
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         [self.tableView reloadData];
     });
-    
+
 }
 
 - (void)setTableView:(NSTableView *)tableView {
     _tableView = tableView;
-    
+
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    
+
     [_tableView reloadData];
 }
 
@@ -46,11 +49,11 @@
     if (index == 0 && count == 0) {
         return @"";
     }
-    
+
     if (count == 0) {
         return [@(index) stringValue];
     }
-    
+
     return [NSString stringWithFormat:@"%li of %li ", index, count];
 }
 
@@ -61,10 +64,10 @@
 }
 
 - (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
-    
+
     NSString *oldValue = @"";
     NSString *newValue = @"";
-    
+
     if (rowIndex == 0) {
         oldValue = self.rowData.fileTrack.name;
         newValue = self.rowData.officialInfo[@"trackCensoredName"];
@@ -100,8 +103,8 @@
                           count:self.rowData.fileTrack.discCount];
         newValue = [self formatIndex:[self.rowData.officialInfo[@"discNumber"] intValue]
                           count:[self.rowData.officialInfo[@"discCount"] intValue]];
-    }    
-    
+    }
+
     if ([oldValue isEqualToString:newValue]) {
         [cell setTextColor:[NSColor textColor]];
     }
@@ -170,7 +173,7 @@
         if (self.rowData.officialInfo == nil) {
             return @"";
         }
-        
+
         if (rowIndex == 0) {
             return self.rowData.officialInfo[@"trackCensoredName"];
         }
@@ -198,9 +201,9 @@
             return [self formatIndex:[self.rowData.officialInfo[@"discNumber"] intValue]
                                count:[self.rowData.officialInfo[@"discCount"] intValue]];
         }
-            
+
     }
-    
+
     return @"";
 }
 

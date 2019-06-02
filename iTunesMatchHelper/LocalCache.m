@@ -21,6 +21,8 @@
 
 @implementation LocalCache
 
+@dynamic database;
+
 - (id)initWithPath:(NSString *)path {
     if ((self = [super init])) {
         sqlite3 *dbConnection;

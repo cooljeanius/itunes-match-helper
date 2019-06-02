@@ -32,7 +32,7 @@
 		09423975149D6D5000B75A38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		09423977149D6D5000B75A38 /* iTunesMatchHelper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iTunesMatchHelper-Prefix.pch"; sourceTree = "<group>"; };
 		0942397B149D6D5000B75A38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		0942397C149D6D5000B75A38 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0942397C149D6D5000B75A38 /* AppDelegate.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0942397F149D6D5000B75A38 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		09423987149D6D5000B75A38 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		0942399D149D6D6C00B75A38 /* iTunesMatchHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iTunesMatchHelper.entitlements; sourceTree = "<group>"; };
