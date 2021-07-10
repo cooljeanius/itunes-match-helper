@@ -19,7 +19,7 @@
 
 @interface AppDelegate ()
 
-@property (nonatomic, assign) __strong NSMutableArray *songData;
+@property (nonatomic, assign) /*__strong*/ NSMutableArray *songData;
 
 @property (nonatomic) BOOL updatingLibrary;
 @property (nonatomic) BOOL canCancel;
@@ -353,11 +353,11 @@
     if (self.canCancel) {
         self.doCancel = YES;
         if (self.updatingLibrary) {
-            [self.scanButton setTitle:@"Update Library"];
-            [self.progressLabel setStringValue:@"Updating canceled. Click 'Update Library' to update checked songs."];
+            [self.scanButton setTitle:NSLocalizedString(@"Update Library", nil)];
+            [self.progressLabel setStringValue:NSLocalizedString(@"Updating canceled. Click 'Update Library' to update checked songs.", nil)];
         } else {
-            [self.scanButton setTitle:@"Scan Library"];
-            [self.progressLabel setStringValue:@"Scanning canceled. Click 'Scan Library' to begin."];
+            [self.scanButton setTitle:NSLocalizedString(@"Scan Library", nil)];
+            [self.progressLabel setStringValue:NSLocalizedString(@"Scanning canceled. Click 'Scan Library' to begin.", nil)];
         }
         self.canCancel = NO;
     }
@@ -367,7 +367,7 @@
             if (self.doCancel)
                 return;
             dispatch_async(dispatch_get_main_queue(), ^(void) {
-                [self.scanButton setTitle:@"Cancel"];
+                [self.scanButton setTitle:NSLocalizedString(@"Cancel", nil)];
                 self.canCancel = YES;
             });
 
@@ -391,10 +391,10 @@
                     NSUInteger fileListCount = [fileList count];
                     NSUInteger z = (x + 1);
                     if (self.doCancel)
-                        [self.progressLabel setStringValue:@"Scanning canceled. Click 'Scan Library' to begin."];
+                        [self.progressLabel setStringValue:NSLocalizedString(@"Scanning canceled. Click 'Scan Library' to begin.", nil)];
                     else
                         [self.progressLabel setStringValue:[NSString stringWithFormat:@"Scanning iTunes library song %i of %li...",
-							    z, fileListCount]];
+							    (int)z, fileListCount]];
                     [self.progressBar setDoubleValue:z];
                 });
 
@@ -486,10 +486,10 @@
                 });
             }
             dispatch_async(dispatch_get_main_queue(), ^(void) {
-                [self.scanButton setTitle:@"Update Library"];
+                [self.scanButton setTitle:NSLocalizedString(@"Update Library", nil)];
                 self.updatingLibrary = YES;
                 self.canCancel = NO;
-                [self.progressLabel setStringValue:@"Finished fetching metadata. Click 'Update Library' to update checked songs."];
+                [self.progressLabel setStringValue:NSLocalizedString(@"Finished fetching metadata. Click 'Update Library' to update checked songs.", nil)];
             });
         });
     } else if (self.updatingLibrary) {
@@ -497,7 +497,7 @@
             if (self.doCancel)
                 return;
             dispatch_async(dispatch_get_main_queue(), ^(void) {
-                [self.scanButton setTitle:@"Cancel"];
+                [self.scanButton setTitle:NSLocalizedString(@"Cancel", nil)];
                 self.canCancel = YES;
             });
 
@@ -507,7 +507,7 @@
                     return;
                 dispatch_async(dispatch_get_main_queue(), ^(void) {
                     [self.progressLabel setStringValue:[NSString stringWithFormat:@"Updating metadata for song %i of %li...",
-							z+1,[self.songData count]]];
+							(int)(z + 1), [self.songData count]]];
                     [self.progressBar setDoubleValue:z+1];
                 });
 
@@ -520,10 +520,10 @@
             }
 
             dispatch_async(dispatch_get_main_queue(), ^(void) {
-                [self.scanButton setTitle:@"Scan Library"];
+                [self.scanButton setTitle:NSLocalizedString(@"Scan Library", nil)];
                 self.updatingLibrary = NO;
                 self.canCancel = NO;
-                [self.progressLabel setStringValue:@"Finished updating song metadata."];
+                [self.progressLabel setStringValue:NSLocalizedString(@"Finished updating song metadata.", nil)];
             });
         });
     }

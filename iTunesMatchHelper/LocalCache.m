@@ -31,7 +31,9 @@
             NSLog(@"[SQLITE] Unable to open database!");
             return nil; // if it fails, return nil obj
         }
+#ifndef __clang__
         _database = dbConnection;
+#endif /* !__clang__ */
         [self prepareTables];
     }
     return self;
@@ -93,7 +95,9 @@
                     NSLog(@"[SQLITE] UNKNOWN DATATYPE");
                 }
 
-                [result addObject:value];
+                if (value != nil) {
+                    [result addObject:value];
+                }
             }
 
         }

@@ -12,6 +12,6 @@
 
 @interface TrackView : NSView <NSTableViewDelegate,NSTableViewDataSource>
 
-@property (nonatomic, assign) __strong RowData *rowData;
-@property (nonatomic, assign) __strong NSTableView *tableView;
+@property (nonatomic, assign) /*__strong*/ RowData *rowData;
+@property (nonatomic, assign) /*__strong*/ NSTableView *tableView;
 @end

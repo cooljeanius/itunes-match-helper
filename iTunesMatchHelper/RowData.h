@@ -14,7 +14,7 @@
 @property (nonatomic, assign) BOOL isChecked;
 @property (nonatomic, assign) BOOL isDifferent;
 @property (nonatomic, assign) NSUInteger trackId;
-@property (nonatomic, assign) __strong iTunesFileTrack *fileTrack;
-@property (nonatomic, assign) __strong NSDictionary *officialInfo;
+@property (nonatomic, assign) /*__strong*/ iTunesFileTrack *fileTrack;
+@property (nonatomic, assign) /*__strong*/ NSDictionary *officialInfo;
 
 @end

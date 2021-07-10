@@ -28,16 +28,16 @@
 }
 
 - (void)setRowData:(RowData *)rowData {
-    _rowData = rowData;
+    RowData *_rowData = rowData;
 
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         [self.tableView reloadData];
     });
-
+    (void)_rowData;
 }
 
 - (void)setTableView:(NSTableView *)tableView {
-    _tableView = tableView;
+    NSTableView *_tableView = tableView;
 
     _tableView.delegate = self;
     _tableView.dataSource = self;
